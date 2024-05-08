@@ -79,7 +79,8 @@ body {
 }
 
 .parallax {
-  background-image: url("./assets/images/hotelLobby.png");
+  /* background-image: url("./assets/images/hotelLobby.png"); */
+  background-color: gray;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,7 +92,7 @@ body {
   position: relative;
   height: 150px;
   background-size: cover;
-  background-image: url("./assets/images/OurService.png");
+  /* background-image: url("./assets/images/OurService.png"); */
   background-position: center center;
 }
 .header-title {
@@ -194,7 +195,7 @@ h2 {
 
 /* The header banner */
 .header-banner {
-  background-image: url("./assets/images/hoteloutSide.jpg");
+  /* background-image: url("./assets/images/hoteloutSide.jpg"); */
   background-size: cover;
   background-position: center;
   position: relative;
