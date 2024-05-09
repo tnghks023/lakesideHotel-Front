@@ -7,22 +7,9 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
   const [newRoomType, setNewRoomType] = useState("");
 
   useEffect(() => {
-    getRoomTypes()
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setRoomTypes(data);
-        } else {
-          console.log(
-            "No room types available or data is not in expected format:",
-            data
-          );
-          setRoomTypes([]); // Handle as you see fit
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch room types:", error);
-        setRoomTypes([]);
-      });
+    getRoomTypes().then((data) => {
+      setRoomTypes(data);
+    });
   }, []);
 
   const roomTypeOptions = useMemo(() => {

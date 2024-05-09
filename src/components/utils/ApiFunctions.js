@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const api = axios.create({
   // baseURL: "http://localhost:9192",
-  baseURL: "lake-side-hotel-back:8080",
+  baseURL: "http://lake-side-hotel-back:8080",
 });
 
 export const getHeader = () => {
@@ -32,8 +32,6 @@ export async function addRoom(photo, roomType, roomPrice) {
 export async function getRoomTypes() {
   try {
     const response = await api.get("/rooms/room-types");
-    console.log(response);
-    console.log(process.env.REACT_APP_API_URL);
     return response.data;
   } catch (error) {
     throw new Error("Error fetching room types");

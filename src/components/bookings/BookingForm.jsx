@@ -94,7 +94,6 @@ const BookingForm = () => {
       navigate("/booking-success", { state: { message: confirmationCode } });
     } catch (error) {
       const errorMessage = error.message;
-      console.log(errorMessage);
       navigate("/booking-success", { state: { error: errorMessage } });
     }
   };
