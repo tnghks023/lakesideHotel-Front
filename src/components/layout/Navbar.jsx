@@ -17,7 +17,7 @@ const NavBar = () => {
     if (userRole && userRole.includes("ROLE_ADMIN")) {
       setAdminCheck(true);
     }
-  }, [showAccount]);
+  }, [isLoggedIn, userRole]);
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">

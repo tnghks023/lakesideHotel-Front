@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  // baseURL: "http://localhost:9192",
+  // baseURL: "http://localhost:8080",
   // baseURL: "https://lake-side-hotel-back:8080",
   baseURL:
     "https://port-0-lake-side-hotel-back-rm6l2llvwfem36.sel5.cloudtype.app",
@@ -22,7 +22,11 @@ export async function addRoom(photo, roomType, roomPrice) {
   formData.append("roomType", roomType);
   formData.append("roomPrice", roomPrice);
 
-  const response = await api.post("/rooms/add/new-room", formData);
+  const token = localStorage.getItem("token");
+
+  const response = await api.post("/rooms/add/new-room", formData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   if (response.status === 201) {
     return true;
   } else {
@@ -53,7 +57,9 @@ export async function getAllRooms() {
 /** This function deletes a room by the Id */
 export async function deleteRoom(roomId) {
   try {
-    const result = await api.delete(`/rooms/delete/room/${roomId}`);
+    const result = await api.delete(`/rooms/delete/room/${roomId}`, {
+      headers: getHeader(),
+    });
     return result.data;
   } catch (error) {
     throw new Error(`Error deleting room ${error.message}`);
@@ -66,7 +72,9 @@ export async function updateRoom(roomId, roomData) {
   formDate.append("roomType", roomData.roomType);
   formDate.append("roomPrice", roomData.roomPrice);
   formDate.append("photo", roomData.photo);
-  const response = await api.put(`/rooms/update/${roomId}`, formDate);
+  const response = await api.put(`/rooms/update/${roomId}`, formDate, {
+    headers: getHeader(),
+  });
   return response;
 }
 
