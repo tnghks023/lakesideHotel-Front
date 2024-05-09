@@ -39,11 +39,11 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
         </p>
         <p>
           Check-In Date :
-          <strong>{moment(booking.checkInDate).format("MMM Do YYYY")}</strong>
+          <strong>{moment(booking.checkInDate).format("YYYY-MM-DD")}</strong>
         </p>
         <p>
           Check-Out Date :
-          <strong>{moment(booking.checkOutDate).format("MMM Do YYYY")}</strong>
+          <strong>{moment(booking.checkOutDate).format("YYYY-MM-DD")}</strong>
         </p>
         <p>
           Number of Days: <strong>{numberOfDays}</strong>
@@ -51,10 +51,11 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
         <div className="mb-2">
           <h5>Number of Guest</h5>
           <strong>
-            Adult{booking.numOfAdults > 1 ? "s" : ""} : {booking.numOfAdults}
+            Adult{booking.numberOfAdults > 1 ? "s" : ""} :{" "}
+            {booking.numberOfAdults}
           </strong>
           <br />
-          <strong> Children : {booking.numOfChildren}</strong>
+          <strong> Children : {booking.numberOfChildren}</strong>
         </div>
         {payment > 0 ? (
           <>

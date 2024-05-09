@@ -1,6 +1,6 @@
-import { parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
 import DateSlider from "../common/DateSlider";
+import moment from "moment";
 
 const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
   const [filteredBookings, setFilteredBookings] = useState(bookingInfo);
@@ -9,8 +9,17 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
     let filtered = bookingInfo;
     if (startDate && endDate) {
       filtered = bookingInfo.filter((booking) => {
-        const bookingStartDate = parseISO(booking.checkInDate);
-        const bookingEndDate = parseISO(booking.checkOutDate);
+        const bookingStartDate = new Date(
+          booking.checkInDate[0],
+          booking.checkInDate[1] - 1,
+          booking.checkInDate[2]
+        );
+        const bookingEndDate = new Date(
+          booking.checkOutDate[0],
+          booking.checkOutDate[1] - 1,
+          booking.checkOutDate[2]
+        );
+
         return (
           bookingStartDate >= startDate &&
           bookingEndDate <= endDate &&
@@ -20,6 +29,7 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
     }
     setFilteredBookings(filtered);
   };
+
   useEffect(() => {
     setFilteredBookings(bookingInfo);
   }, [bookingInfo]);
@@ -55,8 +65,25 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
               <td>{booking.id}</td>
               <td>{booking.room.id}</td>
               <td>{booking.room.roomType}</td>
-              <td>{booking.checkInDate}</td>
-              <td>{booking.checkOutDate}</td>
+              <td>
+                {moment(
+                  new Date(
+                    booking.checkInDate[0],
+                    booking.checkInDate[1] - 1,
+                    booking.checkInDate[2]
+                  )
+                ).format("YYYY-MM-DD")}
+              </td>
+              <td>
+                {moment(
+                  new Date(
+                    booking.checkOutDate[0],
+                    booking.checkOutDate[1] - 1,
+                    booking.checkOutDate[2]
+                  )
+                ).format("YYYY-MM-DD")}
+              </td>
+
               <td>{booking.guestFullName}</td>
               <td>{booking.guestEmail}</td>
               <td>{booking.numberOfAdults}</td>
