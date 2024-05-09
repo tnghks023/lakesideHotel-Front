@@ -19,6 +19,17 @@ const Registration = () => {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
+
+    if (
+      !registration.firstName ||
+      !registration.lastName ||
+      !registration.email ||
+      !registration.password
+    ) {
+      setErrorMessage("All fields are required");
+      return;
+    }
+
     try {
       const result = await registerUser(registration);
       setSuccessMessage(result);

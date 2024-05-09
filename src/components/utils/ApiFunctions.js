@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const api = axios.create({
   // baseURL: "http://localhost:8080",
-  // baseURL: "https://lake-side-hotel-back:8080",
   baseURL:
     "https://port-0-lake-side-hotel-back-rm6l2llvwfem36.sel5.cloudtype.app",
 });
