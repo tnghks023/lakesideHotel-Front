@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const api = axios.create({
   // baseURL: "http://localhost:9192",
-  baseURL: "http://lake-side-hotel-back:8080",
+  baseURL: "https://lake-side-hotel-back:8080",
 });
 
 export const getHeader = () => {
